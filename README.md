@@ -26,13 +26,19 @@
 ```bash 
 git clone https://github.com/weplok/Desktop2Proxy-FotyTwo.git
 ```
-2. Установите зависимости:
+2. Настройте venv и зависимости
+```bash
+python -m venv venv
+```
+```bash
+call venv/Scripts/activate
+```
 ```bash
 pip install -r requirements.txt
 ```
-3. Запустите:
+3. Запустите
 ```bash
-python app\main.py
+python testapp\main.py
 ```
 
 ## Ограничения и заметки
