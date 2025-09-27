@@ -52,7 +52,7 @@ def run_arp() -> list[str]:
     valid = [ip for ip in sorted(ips) if ip != "255.255.255.255"]
     if "127.0.0.1" not in valid:
         valid.insert(0, "127.0.0.1")
-    return valid
+    return valid[:2]
 
 
 def run_nmap_for_ip(ip: str, timeout: int) -> str | None:
@@ -122,7 +122,7 @@ def save_pairs(pairs: list[tuple[str, int]]):
 
 # ---------------- заглушка detect ----------------
 def detect(ip: str, port: int, add_device_callback, stop_event):
-    from app.detect_protocol import DetectConnection
+    from detect_protocol import DetectConnection
     conn = DetectConnection(ip, port)
     res = conn.check()
     if res["likely_protocol"] != "unknown_or_filtered":

@@ -5,7 +5,7 @@ from PyQt5 import QtWidgets, QtCore
 from external_scan import start_scan_protocols
 
 # Пример списка "из коробки" поддерживаемых протоколов для UI.
-DEFAULT_PROTOCOL_CHOICES = ["SSH", "FTP", "POSTGRESQL"]
+DEFAULT_PROTOCOL_CHOICES = ["SSH", "FTP"]
 
 class AddDeviceDialog(QtWidgets.QDialog):
     def __init__(self, parent=None):
@@ -167,10 +167,10 @@ class MainWindow(QtWidgets.QMainWindow):
         proto_upper = proto.upper()
         try:
             from protocols.protocol_handlers import dispatch_protocol
-            threading.Thread(target=dispatch_protocol, args=(proto, ip, login, passwd, self.log_msg), daemon=True).start()
+            threading.Thread(target=dispatch_protocol, args=(proto_upper, ip, login, passwd, self.log_msg), daemon=True).start()
         except Exception:
             QtWidgets.QMessageBox.information(self, "Неподдерживаемый протокол",
-                                                f"Протокол {proto} не реализован. Реализуй в protocol_handlers.py")
+                                                f"Протокол {proto_upper} не реализован. Реализуй в protocol_handlers.py")
 
     # утилита логирования
     def log_msg(self, s):
