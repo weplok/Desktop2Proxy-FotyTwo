@@ -216,3 +216,4 @@ __marimo__/
 .streamlit/secrets.toml
 
 testapp/scan_results/*
+scan_results/*
